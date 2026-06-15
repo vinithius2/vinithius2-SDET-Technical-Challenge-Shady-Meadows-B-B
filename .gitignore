@@ -8,3 +8,6 @@ playwright/.auth/
 
 # Karate
 karate/target/
+
+# IDE
+.vscode/
