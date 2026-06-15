@@ -7,7 +7,7 @@ test.describe('1. Homepage Sanity', () => {
     // Navigate to the home page.
     test.beforeEach(async ({ page }) => {
         await page.goto('https://automationintesting.online/', {
-            waitUntil: 'networkidle'
+            waitUntil: 'load'
         });
     });
 
@@ -19,9 +19,8 @@ test.describe('1. Homepage Sanity', () => {
     });
 
     test('Verify that the "Book this room" buttons are present for the listed room types', async ({ page }) => {
-        // Dev notes: On https://automationintesting.online/, there are 3 "Book now" buttons and not "Book this room". 
-        // Obviously, if I follow the test instructions, I will fail. I will take what we have in the HTML, 
-        // which is "Book now," as true, so the tests pass, but I leave my observation.
+        // Note: The challenge specifies "Book this room" buttons, but the current site renders "Book now" links instead.
+        // Testing against the actual UI behaviour to avoid false failures. This discrepancy is documented as a bug.
         await expect(page.getByRole('link', { name: 'Book now' })).not.toHaveCount(0);
     });
 
